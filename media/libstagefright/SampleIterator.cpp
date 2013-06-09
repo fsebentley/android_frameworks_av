@@ -297,7 +297,7 @@ status_t SampleIterator::findSampleTime(
         }
 
         mTTSSampleIndex += mTTSCount;
-        mTTSSampleTime += mTTSCount * mTTSDuration;
+        mTTSSampleTime += mTTSCount * (uint64_t)mTTSDuration;
 
         mTTSCount = mTable->mTimeToSample[2 * mTimeToSampleIndex];
         mTTSDuration = mTable->mTimeToSample[2 * mTimeToSampleIndex + 1];
@@ -305,7 +305,7 @@ status_t SampleIterator::findSampleTime(
         ++mTimeToSampleIndex;
     }
 
-    *time = mTTSSampleTime + (uint64_t)mTTSDuration * ((uint64_t)sampleIndex - (uint64_t)mTTSSampleIndex);
+    *time = mTTSSampleTime + (uint64_t)mTTSDuration * (sampleIndex - mTTSSampleIndex);
 
     *time += (int32_t)mTable->getCompositionTimeOffset(sampleIndex);
 

@@ -1625,8 +1625,8 @@ private:
                 const int                           mReqChannelCount;
                 const uint32_t                      mReqSampleRate;
                 ssize_t                             mBytesRead;
-#ifdef STE_AUDIO
-                audio_input_clients                 mInputClientId;
+#ifdef QCOM_HARDWARE
+                int16_t                             mInputSource;
 #endif
                 // sync event triggering actual audio capture. Frames read before this event will
                 // be dropped and therefore not read by the application.
